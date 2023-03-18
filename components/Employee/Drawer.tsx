@@ -17,7 +17,7 @@ const Drawer = ({
   return (
     <div
       id="drawer-left-example"
-      className="fixed flex md:hidden top-0 left-0 z-20 min-h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+      className="fixed flex md:hidden top-0 left-0 z-20 min-h-screen p-4 overflow-y-scroll transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
     >
       <div className="relative flex flex-col items-end">
         <Button color="dark" onClick={closeDrawer}>
