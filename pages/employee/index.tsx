@@ -74,7 +74,7 @@ const Employee = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="relative flex flex-row justify-center p-4 gap-6 min-h-screen w-full from-gray-500 to-gray-300 bg-gradient-to-r">
-        <div className="hidden sm:flex">
+        <div className="">
           <DateTime
             dateValue={dateValue}
             setDateValue={setDateValue}

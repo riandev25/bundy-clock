@@ -18,7 +18,7 @@ const DateTime = ({ dateValue, data, setDateValue }: IDateTime) => {
   });
 
   return (
-    <section className="sticky flex flex-col sm:gap-10">
+    <section className="relative flex flex-col gap-10">
       <div className="flex flex-col justify-center items-center p-4 rounded-lg gap-3 sm:gap-4 bg-white drop-shadow-xl">
         <p className="text-lg font-medium">Current time:</p>
         <Clock value={dateValue} />
