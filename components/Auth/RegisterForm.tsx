@@ -28,6 +28,9 @@ const RegisterForm = () => {
       });
       setEmail('');
       setPassword('');
+      toast.success('Registration Successful', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } catch (err) {
       toast.error('Registration Failed', {
         position: toast.POSITION.TOP_RIGHT,
@@ -49,9 +52,9 @@ const RegisterForm = () => {
     }
   }, [router, user, user.uid]);
 
-  useEffect(() => {
-    if (isLogout) router.push('/auth/login');
-  }, [isLogout, router]);
+  // useEffect(() => {
+  //   if (isLogout) router.push('/auth/login');
+  // }, [isLogout, router]);
 
   return isAdmin ? (
     <Fragment>

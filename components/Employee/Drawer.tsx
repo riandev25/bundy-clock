@@ -24,7 +24,7 @@ const Drawer = ({
           OFF
         </Button>
         <DateTime
-          dateValue={dateValue}
+          dateValue={new Date()}
           setDateValue={setDateValue}
           data={data}
         />

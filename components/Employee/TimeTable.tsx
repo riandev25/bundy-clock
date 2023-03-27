@@ -5,46 +5,40 @@ import { useAuth } from '@/context/AuthContext';
 import { ITimeTable } from '@/types/timeTable.interface';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { ToastContainer, toast } from 'react-toastify';
 
-const TimeTable = ({ dateValue, data, hasTimeIn, hasTimeOut }: ITimeTable) => {
+const TimeTable = ({ data, hasTimeIn, hasTimeOut }: ITimeTable) => {
   const [isLogOut, setIsLogout] = useState(false);
 
   const router = useRouter();
 
   const { user, logOut } = useAuth();
 
-  const { formattedDate, formattedDateOnly, formattedTime } =
-    dateTime(dateValue);
+  const { formattedDate, formattedDateOnly, formattedTime } = dateTime(
+    new Date()
+  );
 
   const timeIn = async () => {
     const { error } = await addData('timeIn', {
       timeIn: formattedTime,
       date: formattedDateOnly,
-      timeStamp: dateValue,
+      timeStamp: new Date(),
       userId: user.uid,
     });
     if (error) {
       return console.log(error);
     }
-    toast.success('Refresh to see changes', {
-      position: toast.POSITION.TOP_RIGHT,
-    });
   };
 
   const timeOut = async () => {
     const { error } = await addData('timeOut', {
       timeOut: formattedTime,
       date: formattedDateOnly,
-      timeStamp: dateValue,
+      timeStamp: new Date(),
       userId: user.uid,
     });
     if (error) {
       return console.log(error);
     }
-    toast.success('Refresh to see changes', {
-      position: toast.POSITION.TOP_RIGHT,
-    });
   };
 
   const logOutUser = () => {
@@ -99,7 +93,6 @@ const TimeTable = ({ dateValue, data, hasTimeIn, hasTimeOut }: ITimeTable) => {
         <Button color="light" onClick={logOutUser}>
           Logout
         </Button>
-        <ToastContainer autoClose={1000} />
       </section>
     </div>
   );

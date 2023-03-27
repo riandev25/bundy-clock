@@ -29,8 +29,28 @@ const Employee = () => {
   const { user } = useAuth();
   const { formattedDateOnly } = dateTime(dateValue);
 
+  // useEffect(() => {
+  //   getData('timeIn', user.uid).then(({ result, error }) => {
+  //     if (error) {
+  //       console.error(error);
+  //     } else {
+  //       setTimeInData(result);
+  //     }
+  //   });
+
+  //   getData('timeOut', user.uid).then(({ result, error }) => {
+  //     if (error) {
+  //       console.error(error);
+  //     } else {
+  //       setTimeOutData(result);
+  //     }
+  //   });
+  // }, [user.uid]);
+
+  console.log(timeInData);
+
   useEffect(() => {
-    getData('timeIn', user.uid).then(({ result, error }) => {
+    const unsubscribeTimeIn = getData('timeIn', user.uid, (result, error) => {
       if (error) {
         console.error(error);
       } else {
@@ -38,13 +58,18 @@ const Employee = () => {
       }
     });
 
-    getData('timeOut', user.uid).then(({ result, error }) => {
+    const unsubscribeTimeOut = getData('timeOut', user.uid, (result, error) => {
       if (error) {
         console.error(error);
       } else {
         setTimeOutData(result);
       }
     });
+
+    return () => {
+      unsubscribeTimeIn();
+      unsubscribeTimeOut();
+    };
   }, [user.uid]);
 
   useEffect(() => {
